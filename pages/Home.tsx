@@ -1,6 +1,8 @@
 import React from 'react';
 import { ArrowRight, Magnet, Brain, Microscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
+// Importing the image ensures Vite bundles it and handles the URL correctly
+import heroImage from '../Magnetogenetics_1.png';
 
 const Home: React.FC = () => {
   return (
@@ -9,7 +11,7 @@ const Home: React.FC = () => {
       <section className="relative bg-primary py-20 lg:py-32 overflow-hidden min-h-[600px] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
           <img 
-            src="Magnetogenetics_1.png" 
+            src={heroImage}
             alt="Magneto-mechanical genetics illustration" 
             className="w-full h-full object-cover object-center"
           />
