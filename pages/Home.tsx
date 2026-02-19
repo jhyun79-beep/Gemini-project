@@ -10,9 +10,13 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 overflow-hidden">
           {/* Main Hero Image from public/images folder */}
           <img 
-            src="./images/Magnetogenetics_1.png"
+            src="images/Magnetogenetics_1.png"
             alt="Magneto-mechanical genetics illustration" 
             className="w-full h-full object-cover object-center"
+            onError={(e) => {
+               (e.target as HTMLImageElement).style.display = 'none';
+               ((e.target as HTMLImageElement).parentNode as HTMLElement).style.backgroundColor = '#00205B'; 
+            }}
           />
           {/* Gradient to ensure text readability on the left, but revealing image on right */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent"></div>
@@ -89,7 +93,11 @@ const Home: React.FC = () => {
                     Funded by Institute for Basic Science (IBS) Center for Nanomedicine
                 </p>
                 <img 
-                    src="https://scontent-icn2-1.xx.fbcdn.net/v/t39.30808-1/542292856_772689158726269_3179898337976908271_n.jpg?stp=dst-jpg_s200x200_tt6&_nc_cat=111&ccb=1-7&_nc_sid=2d3e12&_nc_ohc=AmVXYz0cllEQ7kNvwHsXu3n&_nc_oc=AdlNa9e75AlHqjoZkE76th1JGC4hUZhkExDoKznIKOlY_7nrxTZsdGkHC1l4PQoGBkE&_nc_zt=24&_nc_ht=scontent-icn2-1.xx&_nc_gid=SyVF8DqGHKeYPDR32jF4DQ&oh=00_AfsTU7C-XnzQU5FIH0udcY2Fwfut0jPiGAIEXghktp9-Pw&oe=69936EDA" 
+                    src="images/ibs_logo.png"
+                    onError={(e) => {
+                      // Fallback to text if logo is missing
+                      (e.target as HTMLImageElement).style.display = 'none';
+                    }}
                     alt="IBS Center for Nanomedicine Logo" 
                     className="h-24 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-full"
                 />

@@ -14,9 +14,14 @@ const People: React.FC = () => {
             <div className="lg:w-1/3">
                 <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg aspect-[3/4]">
                     <img 
-                        src="./images/jae_hyun_lee.jpg"
+                        src="images/jae_hyun_lee.png"
                         alt="Prof. Jae-Hyun Lee" 
                         className="w-full h-full object-cover"
+                        onError={(e) => {
+                            // Fallback if png is missing or named differently
+                            console.error('Failed to load jae_hyun_lee.png');
+                            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x533?text=Prof.+Jae-Hyun+Lee';
+                        }}
                     />
                 </div>
                 <div className="mt-6 text-center lg:text-left">

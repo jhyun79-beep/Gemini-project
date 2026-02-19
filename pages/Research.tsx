@@ -42,9 +42,13 @@ const Research: React.FC = () => {
             </div>
             <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
                 <img 
-                    src="./images/research_01.jpg" 
+                    src="images/research_01.jpg" 
                     alt="Micro Robotics" 
-                    className="w-full h-full object-cover" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                        console.error('Failed to load research_01.jpg. Check if file exists in public/images/');
+                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Research+Image+01';
+                    }}
                 />
             </div>
         </div>
@@ -53,9 +57,13 @@ const Research: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
              <div className="rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
                 <img 
-                    src="./images/research_02.jpg" 
+                    src="images/research_02.jpg" 
                     alt="Neuro Engineering" 
-                    className="w-full h-full object-cover" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                        console.error('Failed to load research_02.jpg. Check if file exists in public/images/');
+                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Research+Image+02';
+                    }}
                 />
             </div>
             <div>
@@ -112,9 +120,13 @@ const Research: React.FC = () => {
             </div>
              <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
                 <img 
-                    src="./images/research_03.jpg" 
+                    src="images/research_03.jpg" 
                     alt="Nanomedicine" 
                     className="w-full h-full object-cover" 
+                    onError={(e) => {
+                        console.error('Failed to load research_03.jpg. Check if file exists in public/images/');
+                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Research+Image+03';
+                    }}
                 />
             </div>
         </div>
