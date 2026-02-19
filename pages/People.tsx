@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 
 const People: React.FC = () => {
+  const [imgError, setImgError] = useState(false);
+
+  // Use BASE_URL to ensure correct path resolution in all environments
+  const profileImgPath = `${import.meta.env.BASE_URL}images/jae_hyun_lee.png`;
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       
@@ -12,17 +17,25 @@ const People: React.FC = () => {
         <div className="flex flex-col lg:flex-row gap-12">
             {/* PI Image */}
             <div className="lg:w-1/3">
-                <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg aspect-[3/4]">
-                    <img 
-                        src="images/jae_hyun_lee.png"
-                        alt="Prof. Jae-Hyun Lee" 
-                        className="w-full h-full object-cover"
-                        onError={(e) => {
-                            // Fallback if png is missing or named differently
-                            console.error('Failed to load jae_hyun_lee.png');
-                            (e.target as HTMLImageElement).src = 'https://via.placeholder.com/400x533?text=Prof.+Jae-Hyun+Lee';
-                        }}
-                    />
+                <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg aspect-[3/4] flex items-center justify-center">
+                    {!imgError ? (
+                        <img 
+                            src={profileImgPath}
+                            alt="Prof. Jae-Hyun Lee" 
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                                console.error(`Failed to load image at: ${profileImgPath}`);
+                                setImgError(true);
+                            }}
+                        />
+                    ) : (
+                        <div className="text-center p-4">
+                            <p className="text-gray-400 font-bold text-lg mb-2">Image Not Found</p>
+                            <p className="text-xs text-gray-400">
+                                Ensure 'jae_hyun_lee.png' is in 'public/images/'
+                            </p>
+                        </div>
+                    )}
                 </div>
                 <div className="mt-6 text-center lg:text-left">
                      <a 

@@ -1,6 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Research: React.FC = () => {
+  const [errors, setErrors] = useState<Record<string, boolean>>({});
+
+  const handleError = (id: string) => {
+    setErrors(prev => ({ ...prev, [id]: true }));
+  };
+
+  const getImagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
+
+  const renderImage = (id: string, filename: string, alt: string) => {
+    if (errors[id]) {
+        return (
+            <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+                <span className="text-sm font-medium">Image Not Found: {filename}</span>
+            </div>
+        );
+    }
+    return (
+        <img 
+            src={getImagePath(filename)} 
+            alt={alt} 
+            className="w-full h-full object-cover"
+            onError={() => handleError(id)}
+        />
+    );
+  };
+
   return (
     <div className="bg-white min-h-screen">
       <div className="bg-gray-50 py-12 border-b border-gray-200">
@@ -41,30 +67,14 @@ const Research: React.FC = () => {
                 </div>
             </div>
             <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                <img 
-                    src="images/research_01.jpg" 
-                    alt="Micro Robotics" 
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                        console.error('Failed to load research_01.jpg. Check if file exists in public/images/');
-                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Research+Image+01';
-                    }}
-                />
+                {renderImage('res1', 'research_01.jpg', 'Micro Robotics')}
             </div>
         </div>
 
         {/* Topic 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
              <div className="rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                <img 
-                    src="images/research_02.jpg" 
-                    alt="Neuro Engineering" 
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                        console.error('Failed to load research_02.jpg. Check if file exists in public/images/');
-                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Research+Image+02';
-                    }}
-                />
+                {renderImage('res2', 'research_02.jpg', 'Neuro Engineering')}
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -119,15 +129,7 @@ const Research: React.FC = () => {
                 </div>
             </div>
              <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                <img 
-                    src="images/research_03.jpg" 
-                    alt="Nanomedicine" 
-                    className="w-full h-full object-cover" 
-                    onError={(e) => {
-                        console.error('Failed to load research_03.jpg. Check if file exists in public/images/');
-                        (e.target as HTMLImageElement).src = 'https://via.placeholder.com/800x600?text=Research+Image+03';
-                    }}
-                />
+                {renderImage('res3', 'research_03.jpg', 'Nanomedicine')}
             </div>
         </div>
 

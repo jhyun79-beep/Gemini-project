@@ -1,24 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ArrowRight, Magnet, Brain, Microscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
+  const [heroError, setHeroError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
+
+  // Helper to get correct path regardless of deployment subpath
+  const getImagePath = (filename: string) => `${import.meta.env.BASE_URL}images/${filename}`;
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative bg-primary py-20 lg:py-32 overflow-hidden min-h-[600px] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
-          {/* Main Hero Image from public/images folder */}
-          <img 
-            src="images/Magnetogenetics_1.png"
-            alt="Magneto-mechanical genetics illustration" 
-            className="w-full h-full object-cover object-center"
-            onError={(e) => {
-               (e.target as HTMLImageElement).style.display = 'none';
-               ((e.target as HTMLImageElement).parentNode as HTMLElement).style.backgroundColor = '#00205B'; 
-            }}
-          />
-          {/* Gradient to ensure text readability on the left, but revealing image on right */}
+          {/* Main Hero Image */}
+          {!heroError ? (
+            <img 
+              src={getImagePath('Magnetogenetics_1.png')}
+              alt="Magneto-mechanical genetics illustration" 
+              className="w-full h-full object-cover object-center"
+              onError={() => setHeroError(true)}
+            />
+          ) : (
+            <div className="w-full h-full bg-[#00205B] flex items-center justify-center">
+              <span className="text-white/20 text-4xl font-bold">Image Not Found</span>
+            </div>
+          )}
+          {/* Gradient to ensure text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent"></div>
         </div>
         
@@ -92,15 +101,16 @@ const Home: React.FC = () => {
                 <p className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-6">
                     Funded by Institute for Basic Science (IBS) Center for Nanomedicine
                 </p>
-                <img 
-                    src="images/ibs_logo.png"
-                    onError={(e) => {
-                      // Fallback to text if logo is missing
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                    alt="IBS Center for Nanomedicine Logo" 
-                    className="h-24 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-full"
-                />
+                {!logoError ? (
+                  <img 
+                      src={getImagePath('ibs_logo.png')}
+                      onError={() => setLogoError(true)}
+                      alt="IBS Center for Nanomedicine Logo" 
+                      className="h-24 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-full"
+                  />
+                ) : (
+                  <div className="text-gray-400 italic">IBS Center for Nanomedicine</div>
+                )}
             </div>
         </div>
       </section>
