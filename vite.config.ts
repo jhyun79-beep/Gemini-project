@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // CRITICAL: This ensures assets use relative paths, fixing the subdirectory 404 issue
+  base: '/Gemini-project/', // Matches your GitHub repository name
   build: {
     outDir: 'dist',
   },
