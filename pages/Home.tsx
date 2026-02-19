@@ -1,7 +1,7 @@
 import React from 'react';
 import { ArrowRight, Magnet, Brain, Microscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
-// Importing the image ensures Vite bundles it and handles the URL correctly
+// Importing the image with a relative path ensures Vite bundles it correctly
 import heroImage from '../Magnetogenetics_1.png';
 
 const Home: React.FC = () => {
