@@ -30,12 +30,6 @@ jobs:
       - name: Install dependencies
         run: npm install
       
-      # Move the image to public folder so Vite includes it in the build
-      - name: Setup Static Assets
-        run: |
-          mkdir -p public
-          if [ -f "Magnetogenetics_1.png" ]; then mv Magnetogenetics_1.png public/; fi
-
       - name: Build
         run: npm run build
       
