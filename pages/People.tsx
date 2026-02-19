@@ -14,7 +14,7 @@ const People: React.FC = () => {
             <div className="lg:w-1/3">
                 <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg aspect-[3/4]">
                     <img 
-                        src="https://picsum.photos/400/533?random=10" // Placeholder for PI image
+                        src="./images/jae_hyun_lee.jpg"
                         alt="Prof. Jae-Hyun Lee" 
                         className="w-full h-full object-cover"
                     />

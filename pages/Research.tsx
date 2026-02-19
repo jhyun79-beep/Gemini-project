@@ -40,15 +40,23 @@ const Research: React.FC = () => {
                     </ul>
                 </div>
             </div>
-            <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl">
-                <img src="https://picsum.photos/800/600?random=1" alt="Micro Robotics" className="w-full h-full object-cover" />
+            <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
+                <img 
+                    src="./images/research_01.jpg" 
+                    alt="Micro Robotics" 
+                    className="w-full h-full object-cover" 
+                />
             </div>
         </div>
 
         {/* Topic 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-             <div className="rounded-2xl overflow-hidden shadow-xl">
-                <img src="https://picsum.photos/800/600?random=2" alt="Neuro Engineering" className="w-full h-full object-cover" />
+             <div className="rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
+                <img 
+                    src="./images/research_02.jpg" 
+                    alt="Neuro Engineering" 
+                    className="w-full h-full object-cover" 
+                />
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -102,8 +110,12 @@ const Research: React.FC = () => {
                     </ul>
                 </div>
             </div>
-             <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl">
-                <img src="https://picsum.photos/800/600?random=3" alt="Nanomedicine" className="w-full h-full object-cover" />
+             <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
+                <img 
+                    src="./images/research_03.jpg" 
+                    alt="Nanomedicine" 
+                    className="w-full h-full object-cover" 
+                />
             </div>
         </div>
 
