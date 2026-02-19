@@ -23,7 +23,7 @@ const People: React.FC = () => {
                             src={profileImgPath}
                             alt="Prof. Jae-Hyun Lee" 
                             className="w-full h-full object-cover"
-                            onError={(e) => {
+                            onError={() => {
                                 console.error(`Failed to load image at: ${profileImgPath}`);
                                 setImgError(true);
                             }}
