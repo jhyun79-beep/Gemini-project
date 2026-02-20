@@ -2,66 +2,25 @@ import React, { useState } from 'react';
 import { ArrowRight, Magnet, Brain, Microscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-// Helper component for robust image loading
-const RobustImage = ({ 
-    src, 
-    alt, 
-    className, 
-    fallbackText 
-}: { 
-    src: string; 
-    alt: string; 
-    className: string; 
-    fallbackText?: string;
-}) => {
-    const [currentSrc, setCurrentSrc] = useState(src);
-    const [error, setError] = useState(false);
-
-    const handleError = () => {
-        // Check if we have already tried the public fallback
-        if (!currentSrc.includes('public/')) {
-            // Maintain the relative path structure (./) if present
-            // ./images/foo.png -> ./public/images/foo.png
-            if (currentSrc.startsWith('./')) {
-                setCurrentSrc(currentSrc.replace('./', './public/'));
-            } else {
-                setCurrentSrc(`public/${currentSrc}`);
-            }
-        } else {
-            setError(true);
-        }
-    };
-
-    if (error) {
-        return (
-            <div className={`flex items-center justify-center bg-gray-200 text-gray-400 ${className}`}>
-                <span className="text-xs text-center p-2">{fallbackText || "Image Not Found"}</span>
-            </div>
-        );
-    }
-
-    return (
-        <img 
-            src={currentSrc}
-            alt={alt}
-            className={className}
-            onError={handleError}
-        />
-    );
-};
-
 const Home: React.FC = () => {
+  // Base URL for raw content from the specific GitHub repository
+  const IMAGE_BASE_URL = "https://raw.githubusercontent.com/jhyun79-beep/Gemini-project/main/public/images/";
+
   return (
     <div className="flex flex-col">
       {/* Hero Section */}
       <section className="relative bg-primary py-20 lg:py-32 overflow-hidden min-h-[600px] flex items-center">
         <div className="absolute inset-0 overflow-hidden">
           {/* Main Hero Image */}
-          <RobustImage 
-            src="./images/Magnetogenetics_1.png"
+          <img 
+            src={`${IMAGE_BASE_URL}Magnetogenetics_1.png`}
             alt="Magneto-mechanical genetics illustration"
             className="w-full h-full object-cover object-center"
-            fallbackText="Hero Image Not Found"
+            onError={(e) => {
+              // Fallback for visual debugging
+              e.currentTarget.style.display = 'none';
+              e.currentTarget.parentElement?.classList.add('bg-blue-900');
+            }}
           />
           {/* Gradient to ensure text readability */}
           <div className="absolute inset-0 bg-gradient-to-r from-primary/95 via-primary/70 to-transparent"></div>
@@ -138,11 +97,14 @@ const Home: React.FC = () => {
                     Funded by Institute for Basic Science (IBS) Center for Nanomedicine
                 </p>
                 <div className="h-24 w-auto flex items-center justify-center">
-                  <RobustImage 
-                      src="./images/ibs_logo.png"
+                  <img 
+                      src={`${IMAGE_BASE_URL}ibs_logo.png`}
                       alt="IBS Center for Nanomedicine Logo"
                       className="h-24 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-full"
-                      fallbackText="IBS Logo"
+                      onError={(e) => {
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.parentElement!.innerText = "IBS Logo";
+                      }}
                   />
                 </div>
             </div>

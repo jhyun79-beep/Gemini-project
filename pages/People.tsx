@@ -3,23 +3,9 @@ import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 
 const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
-  // State to manage the current path we are trying to load
-  // Start with explicit relative path
-  const [imgSrc, setImgSrc] = useState("./images/jae_hyun_lee.png");
-
-  const handleImageError = () => {
-    // If we haven't tried the 'public/' fallback yet, try it now.
-    if (!imgSrc.includes('public/')) {
-        if (imgSrc.startsWith('./')) {
-            setImgSrc(imgSrc.replace('./', './public/'));
-        } else {
-            setImgSrc(`public/${imgSrc}`);
-        }
-    } else {
-      // If we already tried both, show the error UI
-      setImgError(true);
-    }
-  };
+  
+  // Explicitly using the raw GitHub content URL
+  const profileImgUrl = "https://raw.githubusercontent.com/jhyun79-beep/Gemini-project/main/public/images/jae_hyun_lee.png";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -34,23 +20,20 @@ const People: React.FC = () => {
                 <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg aspect-[3/4] flex items-center justify-center">
                     {!imgError ? (
                         <img 
-                            src={imgSrc}
+                            src={profileImgUrl}
                             alt="Prof. Jae-Hyun Lee" 
                             className="w-full h-full object-cover"
-                            onError={handleImageError}
+                            onError={() => setImgError(true)}
                         />
                     ) : (
                         <div className="text-center p-4">
                             <p className="text-gray-400 font-bold text-lg mb-2">Image Not Found</p>
                             <div className="text-xs text-left bg-gray-50 border border-gray-200 p-2 rounded mb-2">
-                                <p className="font-semibold text-gray-600 mb-1">Tried paths:</p>
-                                <ul className="list-disc pl-4 space-y-1 text-gray-500 mb-2">
-                                    <li>./images/jae_hyun_lee.png</li>
-                                    <li>./public/images/jae_hyun_lee.png</li>
-                                </ul>
+                                <p className="font-semibold text-gray-600 mb-1">Tried URL:</p>
+                                <p className="text-gray-500 break-all mb-2 text-[10px]">{profileImgUrl}</p>
                                 <p className="font-semibold text-gray-600 mb-1">Checklist:</p>
                                 <ul className="list-disc pl-4 space-y-1 text-gray-500">
-                                    <li>File is in <code>public/images/</code></li>
+                                    <li>File exists in repo: <code>public/images/</code></li>
                                     <li>Filename is <code>jae_hyun_lee.png</code></li>
                                     <li><strong>Case Sensitive!</strong></li>
                                 </ul>

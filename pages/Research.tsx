@@ -1,45 +1,28 @@
-import React, { useState } from 'react';
-
-// Robust Image Component for handling path fallbacks
-const ResearchImage = ({ src, alt }: { src: string; alt: string }) => {
-    // Start with explicitly relative path
-    const [currentSrc, setCurrentSrc] = useState(`./images/${src}`);
-    const [error, setError] = useState(false);
-
-    const handleError = () => {
-        // Check if we have already tried the public fallback
-        if (!currentSrc.includes('public/')) {
-            // Maintain the relative path structure (./) if present
-            // ./images/foo.png -> ./public/images/foo.png
-            if (currentSrc.startsWith('./')) {
-                setCurrentSrc(currentSrc.replace('./', './public/'));
-            } else {
-                setCurrentSrc(`public/${currentSrc}`);
-            }
-        } else {
-            setError(true);
-        }
-    };
-
-    if (error) {
-        return (
-             <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400 p-4 text-center">
-                <span className="text-sm font-medium">Image Not Found: {src}</span>
-            </div>
-        );
-    }
-
-    return (
-        <img 
-            src={currentSrc}
-            alt={alt}
-            className="w-full h-full object-cover"
-            onError={handleError}
-        />
-    );
-};
+import React from 'react';
 
 const Research: React.FC = () => {
+  // Base URL for raw content from the specific GitHub repository
+  const IMAGE_BASE_URL = "https://raw.githubusercontent.com/jhyun79-beep/Gemini-project/main/public/images/";
+
+  const renderImage = (filename: string, alt: string) => (
+    <img 
+        src={`${IMAGE_BASE_URL}${filename}`} 
+        alt={alt} 
+        className="w-full h-full object-cover"
+        onError={(e) => {
+             // Fallback logic for visual debugging
+             const container = e.currentTarget.parentElement;
+             if (container) {
+                 e.currentTarget.style.display = 'none';
+                 const errorMsg = document.createElement('div');
+                 errorMsg.className = "w-full h-full flex items-center justify-center bg-gray-200 text-gray-500 p-4 text-center text-sm";
+                 errorMsg.innerText = `Image not found: ${filename}`;
+                 container.appendChild(errorMsg);
+             }
+        }}
+    />
+  );
+
   return (
     <div className="bg-white min-h-screen">
       <div className="bg-gray-50 py-12 border-b border-gray-200">
@@ -80,14 +63,14 @@ const Research: React.FC = () => {
                 </div>
             </div>
             <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                <ResearchImage src="research_01.jpg" alt="Micro Robotics" />
+                {renderImage('research_01.jpg', 'Micro Robotics')}
             </div>
         </div>
 
         {/* Topic 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
              <div className="rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                <ResearchImage src="research_02.jpg" alt="Neuro Engineering" />
+                {renderImage('research_02.jpg', 'Neuro Engineering')}
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -142,7 +125,7 @@ const Research: React.FC = () => {
                 </div>
             </div>
              <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                <ResearchImage src="research_03.jpg" alt="Nanomedicine" />
+                {renderImage('research_03.jpg', 'Nanomedicine')}
             </div>
         </div>
 
