@@ -1,33 +1,37 @@
 import React, { useState } from 'react';
 
-const Research: React.FC = () => {
-  const [errors, setErrors] = useState<Record<string, boolean>>({});
+// Robust Image Component for handling path fallbacks
+const ResearchImage = ({ src, alt }: { src: string; alt: string }) => {
+    const [currentSrc, setCurrentSrc] = useState(`images/${src}`);
+    const [error, setError] = useState(false);
 
-  const handleError = (id: string) => {
-    setErrors(prev => ({ ...prev, [id]: true }));
-  };
+    const handleError = () => {
+        if (!currentSrc.startsWith('public/')) {
+            setCurrentSrc(`public/${currentSrc}`);
+        } else {
+            setError(true);
+        }
+    };
 
-  // Simplified path logic for HashRouter with explicit relative path
-  const getImagePath = (filename: string) => `./images/${filename}`;
-
-  const renderImage = (id: string, filename: string, alt: string) => {
-    if (errors[id]) {
+    if (error) {
         return (
-            <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
-                <span className="text-sm font-medium">Image Not Found: {filename}</span>
+             <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400 p-4 text-center">
+                <span className="text-sm font-medium">Image Not Found: {src}</span>
             </div>
         );
     }
+
     return (
         <img 
-            src={getImagePath(filename)} 
-            alt={alt} 
+            src={currentSrc}
+            alt={alt}
             className="w-full h-full object-cover"
-            onError={() => handleError(id)}
+            onError={handleError}
         />
     );
-  };
+};
 
+const Research: React.FC = () => {
   return (
     <div className="bg-white min-h-screen">
       <div className="bg-gray-50 py-12 border-b border-gray-200">
@@ -68,14 +72,14 @@ const Research: React.FC = () => {
                 </div>
             </div>
             <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                {renderImage('res1', 'research_01.jpg', 'Micro Robotics')}
+                <ResearchImage src="research_01.jpg" alt="Micro Robotics" />
             </div>
         </div>
 
         {/* Topic 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
              <div className="rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                {renderImage('res2', 'research_02.jpg', 'Neuro Engineering')}
+                <ResearchImage src="research_02.jpg" alt="Neuro Engineering" />
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -130,7 +134,7 @@ const Research: React.FC = () => {
                 </div>
             </div>
              <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                {renderImage('res3', 'research_03.jpg', 'Nanomedicine')}
+                <ResearchImage src="research_03.jpg" alt="Nanomedicine" />
             </div>
         </div>
 

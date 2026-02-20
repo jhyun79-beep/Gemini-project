@@ -3,9 +3,19 @@ import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 
 const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
+  // State to manage the current path we are trying to load
+  const [imgSrc, setImgSrc] = useState("images/jae_hyun_lee.png");
 
-  // Explicit relative path for GitHub Pages compatibility
-  const profileImgPath = "./images/jae_hyun_lee.png";
+  const handleImageError = () => {
+    // If we haven't tried the 'public/' prefix yet, try it now.
+    // This helps in local environments where the root is served differently.
+    if (!imgSrc.startsWith('public/')) {
+      setImgSrc(`public/${imgSrc}`);
+    } else {
+      // If we already tried both, show the error UI
+      setImgError(true);
+    }
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -20,20 +30,25 @@ const People: React.FC = () => {
                 <div className="bg-gray-200 rounded-lg overflow-hidden shadow-lg aspect-[3/4] flex items-center justify-center">
                     {!imgError ? (
                         <img 
-                            src={profileImgPath}
+                            src={imgSrc}
                             alt="Prof. Jae-Hyun Lee" 
                             className="w-full h-full object-cover"
-                            onError={() => setImgError(true)}
+                            onError={handleImageError}
                         />
                     ) : (
                         <div className="text-center p-4">
                             <p className="text-gray-400 font-bold text-lg mb-2">Image Not Found</p>
                             <div className="text-xs text-left bg-gray-50 border border-gray-200 p-2 rounded mb-2">
+                                <p className="font-semibold text-gray-600 mb-1">Tried paths:</p>
+                                <ul className="list-disc pl-4 space-y-1 text-gray-500 mb-2">
+                                    <li>images/jae_hyun_lee.png</li>
+                                    <li>public/images/jae_hyun_lee.png</li>
+                                </ul>
                                 <p className="font-semibold text-gray-600 mb-1">Checklist:</p>
                                 <ul className="list-disc pl-4 space-y-1 text-gray-500">
                                     <li>File is in <code>public/images/</code></li>
                                     <li>Filename is <code>jae_hyun_lee.png</code></li>
-                                    <li><strong>Case Sensitive!</strong> (e.g. .PNG vs .png)</li>
+                                    <li><strong>Case Sensitive!</strong></li>
                                 </ul>
                             </div>
                         </div>
