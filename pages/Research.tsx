@@ -1,8 +1,8 @@
 import React from 'react';
 
 const Research: React.FC = () => {
-  // Path updated to 'images/' as requested
-  const IMAGE_BASE_URL = "images/";
+  // Path updated to relative './images/' as requested
+  const IMAGE_BASE_URL = "./images/";
 
   const renderImage = (filename: string, alt: string) => (
     <img 

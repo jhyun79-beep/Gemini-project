@@ -3,8 +3,8 @@ import { ArrowRight, Magnet, Brain, Microscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
-  // Path updated to 'images/' as requested
-  const IMAGE_BASE_URL = "images/";
+  // Path updated to relative './images/' as requested
+  const IMAGE_BASE_URL = "./images/";
 
   return (
     <div className="flex flex-col">
