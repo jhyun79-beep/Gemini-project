@@ -5,7 +5,7 @@ const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   
   // Path updated to relative './images/' as requested
-  const profileImgUrl = "./images/jae_hyun_lee.png";
+  const profileImgUrl = "https://github.com/jhyun79-beep/Gemini-project/blob/main/images/jae_hyun_lee.png";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
