@@ -4,8 +4,8 @@ import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
 
-  // Simple relative path - works best with HashRouter and base: ''
-  const profileImgPath = "images/jae_hyun_lee.png";
+  // Explicit relative path for GitHub Pages compatibility
+  const profileImgPath = "./images/jae_hyun_lee.png";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -28,12 +28,14 @@ const People: React.FC = () => {
                     ) : (
                         <div className="text-center p-4">
                             <p className="text-gray-400 font-bold text-lg mb-2">Image Not Found</p>
-                            <p className="text-xs text-gray-500 break-all border border-gray-300 p-2 rounded bg-gray-50">
-                                Tried loading: <br/>"{profileImgPath}"
-                            </p>
-                            <p className="text-xs text-gray-400 mt-2">
-                                Please ensure 'jae_hyun_lee.png' exists in the 'public/images/' folder.
-                            </p>
+                            <div className="text-xs text-left bg-gray-50 border border-gray-200 p-2 rounded mb-2">
+                                <p className="font-semibold text-gray-600 mb-1">Checklist:</p>
+                                <ul className="list-disc pl-4 space-y-1 text-gray-500">
+                                    <li>File is in <code>public/images/</code></li>
+                                    <li>Filename is <code>jae_hyun_lee.png</code></li>
+                                    <li><strong>Case Sensitive!</strong> (e.g. .PNG vs .png)</li>
+                                </ul>
+                            </div>
                         </div>
                     )}
                 </div>

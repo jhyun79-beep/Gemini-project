@@ -7,8 +7,8 @@ const Research: React.FC = () => {
     setErrors(prev => ({ ...prev, [id]: true }));
   };
 
-  // Simplified path logic for HashRouter
-  const getImagePath = (filename: string) => `images/${filename}`;
+  // Simplified path logic for HashRouter with explicit relative path
+  const getImagePath = (filename: string) => `./images/${filename}`;
 
   const renderImage = (id: string, filename: string, alt: string) => {
     if (errors[id]) {

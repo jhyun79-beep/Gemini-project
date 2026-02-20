@@ -14,7 +14,7 @@ const Home: React.FC = () => {
           {/* Main Hero Image */}
           {!heroError ? (
             <img 
-              src="images/Magnetogenetics_1.png"
+              src="./images/Magnetogenetics_1.png"
               alt="Magneto-mechanical genetics illustration" 
               className="w-full h-full object-cover object-center"
               onError={() => setHeroError(true)}
@@ -100,7 +100,7 @@ const Home: React.FC = () => {
                 </p>
                 {!logoError ? (
                   <img 
-                      src="images/ibs_logo.png"
+                      src="./images/ibs_logo.png"
                       onError={() => setLogoError(true)}
                       alt="IBS Center for Nanomedicine Logo" 
                       className="h-24 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-full"
