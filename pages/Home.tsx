@@ -3,8 +3,8 @@ import { ArrowRight, Magnet, Brain, Microscope } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
-  // Using GitHub Blob URL as requested, adding ?raw=true to ensure it renders as an image
-  const IMAGE_BASE_URL = "https://github.com/jhyun79-beep/Gemini-project/blob/main/public/images/";
+  // Path updated to 'images/' as requested
+  const IMAGE_BASE_URL = "images/";
 
   return (
     <div className="flex flex-col">
@@ -13,11 +13,12 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 overflow-hidden">
           {/* Main Hero Image */}
           <img 
-            src={`${IMAGE_BASE_URL}Magnetogenetics_1.png?raw=true`}
+            src={`${IMAGE_BASE_URL}Magnetogenetics_1.png`}
             alt="Magneto-mechanical genetics illustration"
             className="w-full h-full object-cover object-center"
             onError={(e) => {
               // Fallback for visual debugging
+              console.warn("Hero image failed to load from:", e.currentTarget.src);
               e.currentTarget.style.display = 'none';
               e.currentTarget.parentElement?.classList.add('bg-blue-900');
             }}
@@ -98,7 +99,7 @@ const Home: React.FC = () => {
                 </p>
                 <div className="h-24 w-auto flex items-center justify-center">
                   <img 
-                      src={`${IMAGE_BASE_URL}ibs_logo.png?raw=true`}
+                      src={`${IMAGE_BASE_URL}ibs_logo.png`}
                       alt="IBS Center for Nanomedicine Logo"
                       className="h-24 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-full"
                       onError={(e) => {

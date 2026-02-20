@@ -4,8 +4,8 @@ import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   
-  // Explicitly using the GitHub Blob URL with raw parameter
-  const profileImgUrl = "https://github.com/jhyun79-beep/Gemini-project/blob/main/public/images/jae_hyun_lee.png?raw=true";
+  // Path updated to 'images/' as requested
+  const profileImgUrl = "images/jae_hyun_lee.png";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -33,9 +33,9 @@ const People: React.FC = () => {
                                 <p className="text-gray-500 break-all mb-2 text-[10px]">{profileImgUrl}</p>
                                 <p className="font-semibold text-gray-600 mb-1">Checklist:</p>
                                 <ul className="list-disc pl-4 space-y-1 text-gray-500">
-                                    <li>File exists in repo: <code>public/images/</code></li>
-                                    <li>Filename is <code>jae_hyun_lee.png</code></li>
-                                    <li><strong>Case Sensitive!</strong></li>
+                                    <li>Folder must be named: <code>images/</code></li>
+                                    <li>Filename must be: <code>jae_hyun_lee.png</code></li>
+                                    <li><strong>Case Sensitive!</strong> (e.g., .png vs .PNG)</li>
                                 </ul>
                             </div>
                         </div>
