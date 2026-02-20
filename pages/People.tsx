@@ -4,8 +4,8 @@ import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
 
-  // Use BASE_URL to ensure correct path resolution in all environments
-  const profileImgPath = `${import.meta.env.BASE_URL}images/jae_hyun_lee.png`;
+  // Simple relative path - works best with HashRouter and base: ''
+  const profileImgPath = "images/jae_hyun_lee.png";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
@@ -23,16 +23,16 @@ const People: React.FC = () => {
                             src={profileImgPath}
                             alt="Prof. Jae-Hyun Lee" 
                             className="w-full h-full object-cover"
-                            onError={() => {
-                                console.error(`Failed to load image at: ${profileImgPath}`);
-                                setImgError(true);
-                            }}
+                            onError={() => setImgError(true)}
                         />
                     ) : (
                         <div className="text-center p-4">
                             <p className="text-gray-400 font-bold text-lg mb-2">Image Not Found</p>
-                            <p className="text-xs text-gray-400">
-                                Ensure 'jae_hyun_lee.png' is in 'public/images/'
+                            <p className="text-xs text-gray-500 break-all border border-gray-300 p-2 rounded bg-gray-50">
+                                Tried loading: <br/>"{profileImgPath}"
+                            </p>
+                            <p className="text-xs text-gray-400 mt-2">
+                                Please ensure 'jae_hyun_lee.png' exists in the 'public/images/' folder.
                             </p>
                         </div>
                     )}

@@ -4,7 +4,7 @@ import react from '@vitejs/plugin-react';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: './', // Using relative base path for better compatibility with preview and GH Pages
+  base: '', // Empty string ensures assets are linked relatively (e.g. "assets/...")
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
