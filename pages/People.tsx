@@ -4,8 +4,8 @@ import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   
-  // Explicitly using the raw GitHub content URL
-  const profileImgUrl = "https://raw.githubusercontent.com/jhyun79-beep/Gemini-project/main/public/images/jae_hyun_lee.png";
+  // Explicitly using the GitHub Blob URL with raw parameter
+  const profileImgUrl = "https://github.com/jhyun79-beep/Gemini-project/blob/main/public/images/jae_hyun_lee.png?raw=true";
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

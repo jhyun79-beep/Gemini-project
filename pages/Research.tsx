@@ -1,12 +1,12 @@
 import React from 'react';
 
 const Research: React.FC = () => {
-  // Base URL for raw content from the specific GitHub repository
-  const IMAGE_BASE_URL = "https://raw.githubusercontent.com/jhyun79-beep/Gemini-project/main/public/images/";
+  // Using GitHub Blob URL as requested, adding ?raw=true to ensure it renders as an image
+  const IMAGE_BASE_URL = "https://github.com/jhyun79-beep/Gemini-project/blob/main/public/images/";
 
   const renderImage = (filename: string, alt: string) => (
     <img 
-        src={`${IMAGE_BASE_URL}${filename}`} 
+        src={`${IMAGE_BASE_URL}${filename}?raw=true`} 
         alt={alt} 
         className="w-full h-full object-cover"
         onError={(e) => {
