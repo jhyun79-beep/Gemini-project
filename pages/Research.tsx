@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 
 // Robust Image Component for handling path fallbacks
 const ResearchImage = ({ src, alt }: { src: string; alt: string }) => {
-    const [currentSrc, setCurrentSrc] = useState(`images/${src}`);
+    // Start with explicitly relative path
+    const [currentSrc, setCurrentSrc] = useState(`./images/${src}`);
     const [error, setError] = useState(false);
 
     const handleError = () => {
-        if (!currentSrc.startsWith('public/')) {
-            setCurrentSrc(`public/${currentSrc}`);
+        // Check if we have already tried the public fallback
+        if (!currentSrc.includes('public/')) {
+            // Maintain the relative path structure (./) if present
+            // ./images/foo.png -> ./public/images/foo.png
+            if (currentSrc.startsWith('./')) {
+                setCurrentSrc(currentSrc.replace('./', './public/'));
+            } else {
+                setCurrentSrc(`public/${currentSrc}`);
+            }
         } else {
             setError(true);
         }

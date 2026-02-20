@@ -4,13 +4,17 @@ import { ExternalLink, Award, GraduationCap, Briefcase } from 'lucide-react';
 const People: React.FC = () => {
   const [imgError, setImgError] = useState(false);
   // State to manage the current path we are trying to load
-  const [imgSrc, setImgSrc] = useState("images/jae_hyun_lee.png");
+  // Start with explicit relative path
+  const [imgSrc, setImgSrc] = useState("./images/jae_hyun_lee.png");
 
   const handleImageError = () => {
-    // If we haven't tried the 'public/' prefix yet, try it now.
-    // This helps in local environments where the root is served differently.
-    if (!imgSrc.startsWith('public/')) {
-      setImgSrc(`public/${imgSrc}`);
+    // If we haven't tried the 'public/' fallback yet, try it now.
+    if (!imgSrc.includes('public/')) {
+        if (imgSrc.startsWith('./')) {
+            setImgSrc(imgSrc.replace('./', './public/'));
+        } else {
+            setImgSrc(`public/${imgSrc}`);
+        }
     } else {
       // If we already tried both, show the error UI
       setImgError(true);
@@ -41,8 +45,8 @@ const People: React.FC = () => {
                             <div className="text-xs text-left bg-gray-50 border border-gray-200 p-2 rounded mb-2">
                                 <p className="font-semibold text-gray-600 mb-1">Tried paths:</p>
                                 <ul className="list-disc pl-4 space-y-1 text-gray-500 mb-2">
-                                    <li>images/jae_hyun_lee.png</li>
-                                    <li>public/images/jae_hyun_lee.png</li>
+                                    <li>./images/jae_hyun_lee.png</li>
+                                    <li>./public/images/jae_hyun_lee.png</li>
                                 </ul>
                                 <p className="font-semibold text-gray-600 mb-1">Checklist:</p>
                                 <ul className="list-disc pl-4 space-y-1 text-gray-500">

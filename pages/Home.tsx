@@ -18,8 +18,15 @@ const RobustImage = ({
     const [error, setError] = useState(false);
 
     const handleError = () => {
-        if (!currentSrc.startsWith('public/')) {
-            setCurrentSrc(`public/${currentSrc}`);
+        // Check if we have already tried the public fallback
+        if (!currentSrc.includes('public/')) {
+            // Maintain the relative path structure (./) if present
+            // ./images/foo.png -> ./public/images/foo.png
+            if (currentSrc.startsWith('./')) {
+                setCurrentSrc(currentSrc.replace('./', './public/'));
+            } else {
+                setCurrentSrc(`public/${currentSrc}`);
+            }
         } else {
             setError(true);
         }
@@ -51,7 +58,7 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 overflow-hidden">
           {/* Main Hero Image */}
           <RobustImage 
-            src="images/Magnetogenetics_1.png"
+            src="./images/Magnetogenetics_1.png"
             alt="Magneto-mechanical genetics illustration"
             className="w-full h-full object-cover object-center"
             fallbackText="Hero Image Not Found"
@@ -132,7 +139,7 @@ const Home: React.FC = () => {
                 </p>
                 <div className="h-24 w-auto flex items-center justify-center">
                   <RobustImage 
-                      src="images/ibs_logo.png"
+                      src="./images/ibs_logo.png"
                       alt="IBS Center for Nanomedicine Logo"
                       className="h-24 w-auto grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300 rounded-full"
                       fallbackText="IBS Logo"
