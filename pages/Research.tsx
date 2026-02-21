@@ -2,7 +2,7 @@ import React from 'react';
 
 const Research: React.FC = () => {
   // Path updated to relative './images/' as requested
-  const IMAGE_BASE_URL = "./images/";
+  const IMAGE_BASE_URL = `${import.meta.env.BASE_URL}images/`;
 
   const renderImage = (filename: string, alt: string) => (
     <img 
@@ -63,14 +63,14 @@ const Research: React.FC = () => {
                 </div>
             </div>
             <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                {renderImage('research_01.jpg', 'Micro Robotics')}
+                {renderImage('MagNProbe_1.png', 'Micro Robotics')}
             </div>
         </div>
 
         {/* Topic 2 */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
              <div className="rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                {renderImage('research_02.jpg', 'Neuro Engineering')}
+                {renderImage('Magnetogenetics_1.png', 'Neuro Engineering')}
             </div>
             <div>
                 <div className="flex items-center gap-3 mb-4">
@@ -125,7 +125,7 @@ const Research: React.FC = () => {
                 </div>
             </div>
              <div className="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl bg-gray-100 min-h-[300px]">
-                {renderImage('research_03.jpg', 'Nanomedicine')}
+                {renderImage('NanoPCR_1.png', 'Nanomedicine')}
             </div>
         </div>
 

@@ -1,0 +1,6 @@
+# Ensure images are treated as binary files and not corrupted by line ending changes
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary

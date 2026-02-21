@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
   // Path updated to relative './images/' as requested
-  const IMAGE_BASE_URL = "./images/";
+  const IMAGE_BASE_URL = `${import.meta.env.BASE_URL}images/`;
 
   return (
     <div className="flex flex-col">
