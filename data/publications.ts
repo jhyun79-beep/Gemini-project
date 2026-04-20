@@ -11,12 +11,21 @@ export interface Publication {
 
 export const publications: Publication[] = [
     {
+        id: 69,
+        authors: "Moo Hyun Kim, Jang-Ung Park*, Jae-Hyun Lee*",
+        title: "From Materials to Devices: An Engineering Perspective on Designing Gallium-Based Liquid Metal Bioelectronics",
+        journal: "Acc. Mater. Res.",
+        year: "2026",
+        doi: "doi.org/10.1021/accountsmr.5c00349"
+    },
+    {
         id: 68,
         authors: "Moo Hyun Kim, Ju-Young Kim, Jaemog Jung, Jungsu David Lah, Heehun Kim, Yong Won Kwon, Jinwoo Cheon, Jang-Ung Park*, Jae-Hyun Lee*",
         title: "Large-Scale and High-Resolution Patterning of Magnetic Liquid Metal Nanohybrid for Stretchable Circuits",
         journal: "ACS Nano",
         year: "2026",
-        doi: "doi.org/10.1021/acsnano.5c12929"
+        volume: "20",
+        pages: "5452"
     },
     {
         id: 67,
